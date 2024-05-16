@@ -4,7 +4,7 @@ import Medecine from "src/components/Medecine";
 export default function Medecines() {
     const [searchValue, setSearchValue] = useState("");
     const [medicines, setMedicines] = useState([
-        { image: "https://s2.euro-pharmas.com/3112-large_default/doliprane-liquiz-200mg-sanofi.jpg", name: "Doliprane 200mg", description: "Doliprane est un médicament antalgique (calmant la douleur) et antipyrétique (baisse la fièvre). Il est utilisé pour traiter la fièvre et les douleurs telles que les maux de tête, les douleurs dentaires, les courbatures, les douleurs menstruelles et les douleurs liées à l'arthrite.", prix: "1500 FCFA" },
+        { image: "https://s2.euro-pharmas.com/3112-large_default/doliprane-liquiz-200mg-sanofi.jpg", name: "Doliprane 200mg", description: "Doliprane est un médicament antalgique (calmant la douleur) et antipyrétique (baisse la fièvre). Il est utilisé pour traiter la fièvre et les douleurs telles que les maux de tête, les douleurs dentaires, les courbatures, les douleurs menstruelles et les douleurs liées à l'arthrite.", prix: "1500 FCFA", redirectUrl: "https://buy.stripe.com/test_3cscOheug6FvfQs8ww" },
         { image: "https://schmerzklinik.de/wp-content/uploads/2018/05/aimovig.jpg", name: "Aimovig 70mg", description: "Aimovig (erenumab) est un médicament prescrit pour le traitement de la migraine chez les adultes. Il appartient à une classe de médicaments appelés anticorps monoclonaux et agit en bloquant l'activité d'une protéine impliquée dans les crises de migraine.", prix: "25000 FCFA" },
         { image: "https://exphar.com/wp-content/uploads/2021/02/febrilex-comprimes-medicament-afrique-exphar.jpeg", name: "Febrilex 50 pochettes", description: "Febrilex est un médicament antipyrétique utilisé pour réduire la fièvre. Il est également utilisé pour soulager les douleurs légères à modérées telles que les maux de tête, les douleurs dentaires, les douleurs menstruelles et les douleurs musculaires.", prix: "7500 FCFA" },
         { image: "https://exphar.com/wp-content/uploads/2021/02/Flexdol-comprimes.jpg", name: "Flexdol 10 Comprimés", description: "Flexdol est un médicament analgésique et anti-inflammatoire utilisé pour soulager les douleurs articulaires et musculaires associées à des conditions telles que l'arthrite, les entorses et les tensions musculaires.", prix: "5000 FCFA" },
@@ -38,7 +38,7 @@ export default function Medecines() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {searchResults.map((medicine, index) => (
-                    <Medecine key={index} image={medicine.image} name={medicine.name} description={medicine.description} prix={medicine.prix} />
+                    <Medecine key={index} image={medicine.image} name={medicine.name} description={medicine.description} prix={medicine.prix} redirectUrl={medicine.redirectUrl} />
                 ))}
             </div>
         </div>
