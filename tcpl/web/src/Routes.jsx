@@ -1,36 +1,29 @@
-// In this file, all Page components from 'src/pages` are auto-imported. Nested
-// directories are supported, and should be uppercase. Each subdirectory will be
-// prepended onto the component name.
-//
-// Examples:
-//
-// 'src/pages/HomePage/HomePage.js'         -> HomePage
-// 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
-
-import { Set, Router, Route } from '@redwoodjs/router'
-
-import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
-import login from './pages/Login'
-import Contact from './components/Contact'
-import Signup from './components/Signup'
-import Medecines from './pages/Medecines'
+import { Router, Route, PrivateSet, Public } from '@redwoodjs/router';
+import { useAuth } from './auth';
+import Contact from './components/Contact';
+import HomePage from './pages/HomePage';
+import Login from './components/Login';
+import Medecines from './pages/Medecines';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Signup from './components/Signup';
 
 const Routes = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Router>
-      <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
-        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
-        <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-        <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-        <Route path="/users" page={UserUsersPage} name="users" />
-      </Set>
-      <Route path="/auth/login" page={login} name="login" />
-      <Route path="/auth/sign-up" page={Signup} name="sign-up" />
-      <Route path="/contact" page={Contact} name="contact" />
-      <Route path="/medicament" page={Medecines} name="medecines" />
+        <Route path="/" page={Medecines} name="home" />
+        <Route path="/auth/login" page={Login} name="login" />
+        <Route path="/auth/sign-up" page={Signup} name="sign-up" />
+        <Route path="/contact" page={Contact} name="contact" />
+        <Route path="/medicament" page={Medecines} name="medecines" />
+
+      {/* {isAuthenticated && <Redirect from="/auth/login" to="/home" />}
+      {isAuthenticated && <Redirect from="/auth/sign-up" to="/home" />} */}
+
       <Route notfound page={NotFoundPage} />
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

@@ -1,22 +1,45 @@
+import { useState } from 'react';
+import { navigate, routes } from '@redwoodjs/router'
 import { Helmet } from "@redwoodjs/web"
+import { useAuth } from "src/auth";
 
 export default function Login() {
+    const { logIn } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+
+    const handleLogIn = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await logIn({ email, password });
+            navigate(routes.medecines());
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
     return (
         <>
             <Helmet>
                 <title>Login | Xenon Pharmacy</title>
             </Helmet>
-            <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
-                <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div class="max-w-2xl mx-auto text-center">
-                        <h2 class="text-3xl font-bold leading-tight text-green-800 sm:text-4xl lg:text-5xl">Se Connecter</h2>
+            <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="max-w-2xl mx-auto text-center">
+                        <h2 className="text-3xl font-bold leading-tight text-green-800 sm:text-4xl lg:text-5xl">Se Connecter</h2>
                     </div>
 
-                    <div class="relative max-w-md mx-auto mt-8 md:mt-16">
-                        <div class="overflow-hidden bg-white rounded-md shadow-md">
-                            <div class="px-4 py-6 sm:px-8 sm:py-7">
-                                <form action="#" method="POST">
-                                    <div class="space-y-5">
+                    <div className="relative max-w-md mx-auto mt-8 md:mt-16">
+                        <div className="overflow-hidden bg-white rounded-md shadow-md">
+                            <div className="px-4 py-6 sm:px-8 sm:py-7">
+                                <form onSubmit={handleLogIn} method="POST">
+                                    <div className="space-y-5">
+                                        {error && <div className="text-red-500">{error}</div>}
                                         <div>
                                             <label for="" class="text-base font-medium text-gray-900"> Addresse Email </label>
                                             <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
@@ -27,17 +50,21 @@ export default function Login() {
                                                 </div>
 
                                                 <input
+                                                    required
                                                     type="email"
-                                                    name=""
-                                                    id=""
-                                                    placeholder="Entrer votre addresse email"
-                                                    class="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-green-800 caret-green-800"
+                                                    id="email"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    placeholder="Entrer votre adresse email"
+                                                    className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-green-800 caret-green-800"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label for="" class="text-base font-medium text-gray-900"> Mot de passe </label>
+                                            <div class="flex items-center justify-between">
+                                                <label for="" class="text-base font-medium text-gray-900"> Mot de passe </label>
+                                            </div>
                                             <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,24 +78,25 @@ export default function Login() {
                                                 </div>
 
                                                 <input
+                                                    required
                                                     type="password"
-                                                    name=""
-                                                    id=""
+                                                    id="password"
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
                                                     placeholder="Entrer votre mot de passe"
-                                                    class="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-green-800 caret-green-800"
+                                                    className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-green-800 caret-green-800"
                                                 />
                                             </div>
                                         </div>
 
-
                                         <div>
-                                            <button type="submit" class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-green-800 border border-transparent rounded-md focus:outline-none hover:bg-green-800 focus:bg-green-800">
-                                                Login
+                                            <button type="submit" className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-green-800 border border-transparent rounded-md focus:outline-none hover:bg-green-800 focus:bg-green-800" disabled={loading}>
+                                            {loading ? 'En cours...' : 'Se connecter'}
                                             </button>
                                         </div>
 
-                                        <div class="text-center">
-                                            <p class="text-base text-gray-600">Vous n'avez pas de compte? <a href="/auth/sign-up" title="" class="font-medium text-orange-500 transition-all duration-200 hover:text-orange-600 hover:underline">Inscrivez-vous</a></p>
+                                        <div className="text-center">
+                                            <p className="text-base text-gray-600">Vous n'avez pas de compte? <a href="/auth/sign-up" title="" className="font-medium text-orange-500 transition-all duration-200 hover:text-orange-600 hover:underline">Inscrivez-vous</a></p>
                                         </div>
                                     </div>
                                 </form>
@@ -78,5 +106,5 @@ export default function Login() {
                 </div>
             </section>
         </>
-    )
+    );
 }

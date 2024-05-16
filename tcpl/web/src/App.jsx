@@ -9,14 +9,18 @@ import './index.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
+import { AuthProvider, useAuth } from './auth'
+
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-      <RedwoodApolloProvider>
-        <Navbar />
-        <Routes />
-        <Footer />
-      </RedwoodApolloProvider>
+      <AuthProvider>
+        <RedwoodApolloProvider useAuth={useAuth}>
+          <Navbar />
+          <Routes />
+          <Footer />
+        </RedwoodApolloProvider>
+      </AuthProvider>
     </RedwoodProvider>
   </FatalErrorBoundary>
 )
