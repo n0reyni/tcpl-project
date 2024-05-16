@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^2",
+    "@redwoodjs-stripe/web": "^1.0.8",
     "@redwoodjs/auth-auth0-web": "7.5.0",
     "@redwoodjs/auth-firebase-web": "7.5.0",
     "@redwoodjs/forms": "7.5.0",

@@ -8,14 +8,16 @@ import services from 'src/services/**/*.{js,ts}'
 import { getCurrentUser } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
+import { stripeSchemas, stripeServices } from '@redwoodjs-stripe/api'
+
 
 export const handler = createGraphQLHandler({
   authDecoder,
   getCurrentUser,
   loggerConfig: { logger, options: {} },
   directives,
-  sdls,
-  services,
+  sdls: { ...sdls, ...stripeSchemas },
+  services: { ...services, ...stripeServices },
   onException: () => {
     // Disconnect from your database with an unhandled exception.
     db.$disconnect()

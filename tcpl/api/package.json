@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@redwoodjs-stripe/api": "^1.0.8",
     "@redwoodjs/api": "7.5.0",
     "@redwoodjs/auth-auth0-api": "7.5.0",
     "@redwoodjs/auth-firebase-api": "7.5.0",

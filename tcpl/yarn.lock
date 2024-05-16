@@ -5189,6 +5189,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redwoodjs-stripe/api@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@redwoodjs-stripe/api@npm:1.0.8"
+  dependencies:
+    stripe: "npm:>=11.18.0"
+  checksum: 10c0/b10b602ea456c998007c15b01ce2ed4bd2da12988fb45e4dfd883f8c9f91796682cbeca65d819208451f857548b103532cf834dc19822a5df79c289bf14162db
+  languageName: node
+  linkType: hard
+
+"@redwoodjs-stripe/web@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@redwoodjs-stripe/web@npm:1.0.8"
+  peerDependencies:
+    "@redwoodjs/web": ">=5.4.3"
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+  checksum: 10c0/3d1b10c8257ef42bc419aa6789235460184d47896ba4fff514c02092f4cc130ffd94c0465a0781fb034544c6dc2c50b4d86aa1f9b46eb54d04fe5a332a061074
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/api-server@npm:7.5.0":
   version: 7.5.0
   resolution: "@redwoodjs/api-server@npm:7.5.0"
@@ -6518,7 +6538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12.12.47, @types/node@npm:>=13.7.0":
+"@types/node@npm:*, @types/node@npm:>=12.12.47, @types/node@npm:>=13.7.0, @types/node@npm:>=8.1.0":
   version: 20.12.12
   resolution: "@types/node@npm:20.12.12"
   dependencies:
@@ -7734,6 +7754,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
+    "@redwoodjs-stripe/api": "npm:^1.0.8"
     "@redwoodjs/api": "npm:7.5.0"
     "@redwoodjs/auth-auth0-api": "npm:7.5.0"
     "@redwoodjs/auth-firebase-api": "npm:7.5.0"
@@ -18889,7 +18910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.11.2":
+"qs@npm:^6.11.0, qs@npm:^6.11.2":
   version: 6.12.1
   resolution: "qs@npm:6.12.1"
   dependencies:
@@ -20881,6 +20902,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stripe@npm:>=11.18.0":
+  version: 15.6.0
+  resolution: "stripe@npm:15.6.0"
+  dependencies:
+    "@types/node": "npm:>=8.1.0"
+    qs: "npm:^6.11.0"
+  checksum: 10c0/9e4d421980beb01f51eaf2572c71d3b154751cead43a175ac0b45a48df8b502d4f9842bf8f82d0544ccb6dd6a0fb93a8ffee4408a36246e93ae1154a815ecd82
+  languageName: node
+  linkType: hard
+
 "strnum@npm:^1.0.5":
   version: 1.0.5
   resolution: "strnum@npm:1.0.5"
@@ -22350,6 +22381,7 @@ __metadata:
   resolution: "web@workspace:web"
   dependencies:
     "@auth0/auth0-spa-js": "npm:^2"
+    "@redwoodjs-stripe/web": "npm:^1.0.8"
     "@redwoodjs/auth-auth0-web": "npm:7.5.0"
     "@redwoodjs/auth-firebase-web": "npm:7.5.0"
     "@redwoodjs/forms": "npm:7.5.0"
