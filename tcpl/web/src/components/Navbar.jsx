@@ -16,7 +16,7 @@ export default function Navbar() {
         <nav className="relative flex items-center justify-between h-16 bg-white lg:rounded-md lg:shadow-lg lg:h-16 lg:px-8 lg:py-6">
           {isAuthenticated ? (
             <div className="flex-shrink-0">
-                <Link to="/medecines" className="text-green-800 flex font-bold text-xl">
+                <Link to="/medicament" className="text-green-800 flex font-bold text-xl">
                   Xenon Pharmacy
                 </Link>
               </div>) : (
